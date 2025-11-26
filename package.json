@@ -1,0 +1,56 @@
+{
+    "name": "@ehfuse/mui-external-link",
+    "version": "1.0.0",
+    "description": "A React component for handling external links with dialog, popup, or direct navigation modes",
+    "main": "dist/index.js",
+    "module": "dist/index.esm.js",
+    "types": "dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.esm.js",
+            "require": "./dist/index.js"
+        }
+    },
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "node build.js",
+        "prepublishOnly": "npm run build"
+    },
+    "keywords": [
+        "react",
+        "external-link",
+        "dialog",
+        "popup",
+        "mui",
+        "material-ui"
+    ],
+    "author": "김영진 (Kim Young Jin) <ehfuse@gmail.com>",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ehfuse/mui-external-link.git"
+    },
+    "peerDependencies": {
+        "@emotion/react": "^11.0.0",
+        "@emotion/styled": "^11.0.0",
+        "@mui/icons-material": "^5.0.0 || ^6.0.0",
+        "@mui/material": "^5.0.0 || ^6.0.0",
+        "react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+        "react-dom": "^17.0.0 || ^18.0.0 || ^19.0.0"
+    },
+    "devDependencies": {
+        "@emotion/react": "^11.13.3",
+        "@emotion/styled": "^11.13.0",
+        "@mui/icons-material": "^6.1.7",
+        "@mui/material": "^6.1.7",
+        "@types/react": "^18.3.12",
+        "@types/react-dom": "^18.3.1",
+        "esbuild": "^0.24.0",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
+        "typescript": "^5.6.3"
+    }
+}
