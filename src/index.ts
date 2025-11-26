@@ -9,5 +9,4 @@
 export { default as ExternalLink } from "./ExternalLink";
 export { default } from "./ExternalLink";
 export * from "./types";
-export { useBreakpoint } from "./useBreakpoint";
 export { highlightDomain } from "./utils";

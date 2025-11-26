@@ -6,40 +6,38 @@
  * @author 김영진 (ehfuse@gmail.com)
  */
 
-import type { ReactElement } from "react";
+import type { ReactElement, ReactNode, CSSProperties } from "react";
+
+/**
+ * 다이얼로그 커스터마이징 옵션
+ */
+export interface DialogOptions {
+    titleText?: string; // 다이얼로그 타이틀 텍스트
+    titleStyle?: CSSProperties; // 타이틀 CSS 스타일
+    showCloseButton?: boolean; // X 아이콘 버튼 표시 여부 (기본값: true)
+    leftActions?: ReactNode; // 하단 왼쪽 액션 영역 (예: 체크박스, 링크 등)
+}
 
 /**
  * ExternalLink 컴포넌트의 Props
  */
 export interface ExternalLinkProps {
-    /** 링크 URL */
-    href: string;
-    /** 링크 제목 (툴팁에 표시됨) */
-    title?: string;
-    /** 링크 내부 콘텐츠 */
-    children: ReactElement | string;
-    /** 추가 CSS 클래스 */
-    className?: string;
-    /**
-     * 링크 열기 모드
-     * - "dialog": Dialog 내부에 iframe으로 표시
-     * - "popup": 새 팝업 창으로 열기
-     * - undefined: 기본 동작 (외부 링크 시 확인 대화상자)
-     */
-    openMode?: "dialog" | "popup";
-    /** 팝업/다이얼로그 너비 (픽셀) */
-    width?: number;
-    /** 팝업/다이얼로그 높이 (픽셀) */
-    height?: number;
+    href: string; // 링크 URL
+    title?: string; // 툴팁 텍스트
+    children: ReactElement | string; // 링크 내부 콘텐츠
+    className?: string; // 추가 CSS 클래스
+    openMode?: "dialog" | "popup"; // 링크 열기 모드: "dialog" | "popup" | undefined(기본)
+    width?: number; // 팝업/다이얼로그 너비 (픽셀)
+    height?: number; // 팝업/다이얼로그 높이 (픽셀)
+    dialog?: DialogOptions; // 다이얼로그 커스터마이징 옵션
+    trusted?: boolean; // 신뢰할 수 있는 링크 (경고창 없이 바로 이동)
 }
 
 /**
  * useBreakpoint 훅의 반환 타입
  */
 export interface BreakpointState {
-    /** 현재 뷰포트 너비 */
-    width: number;
-    /** 브레이크포인트 상태 */
+    width: number; // 현재 뷰포트 너비
     breakpoint: {
         xs: boolean;
         sm: boolean;

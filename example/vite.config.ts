@@ -9,5 +9,23 @@ export default defineConfig({
         alias: {
             "@ehfuse/mui-external-link": path.resolve(__dirname, "../src"),
         },
+        dedupe: [
+            "react",
+            "react-dom",
+            "@emotion/react",
+            "@emotion/styled",
+            "@mui/material",
+            "@mui/icons-material",
+        ],
+    },
+    optimizeDeps: {
+        include: [
+            "react",
+            "react-dom",
+            "@emotion/react",
+            "@emotion/styled",
+            "@mui/material",
+            "@mui/icons-material",
+        ],
     },
 });

@@ -7,7 +7,7 @@
  */
 
 import { useState, useEffect } from "react";
-import type { BreakpointState } from "./types";
+import type { BreakpointState } from "../types";
 
 // MUI 기본 브레이크포인트 값
 const BREAKPOINTS = {
