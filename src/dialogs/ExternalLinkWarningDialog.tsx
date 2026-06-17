@@ -64,6 +64,7 @@ export default function ExternalLinkWarningDialog({
                             padding: "16px 24px",
                             fontFamily: "monospace",
                             fontSize: "14px",
+                            fontWeight: 700,
                             color: "#000",
                             wordBreak: "break-all",
                         }}
