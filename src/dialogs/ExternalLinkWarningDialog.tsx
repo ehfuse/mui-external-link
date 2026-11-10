@@ -6,8 +6,10 @@
  * @author 김영진 (ehfuse@gmail.com)
  */
 
-import type { ReactNode, CSSProperties } from "react";
-import { Dialog, DialogContent } from "@mui/material";
+import { useState, type ReactNode, type CSSProperties } from "react";
+import { Dialog, DialogContent, IconButton, Tooltip } from "@mui/material";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import CheckIcon from "@mui/icons-material/Check";
 import { highlightDomain } from "../utils";
 import DialogHeader from "./DialogHeader";
 import DialogFooter from "./DialogFooter";
@@ -33,6 +35,19 @@ export default function ExternalLinkWarningDialog({
     showCloseButton,
     leftActions,
 }: ExternalLinkWarningDialogProps) {
+    const [copied, setCopied] = useState(false);
+
+    /** 웹 주소를 클립보드에 복사하고 잠시 복사 완료 표시를 띄운다. */
+    const handleCopy = async () => {
+        try {
+            await navigator.clipboard.writeText(href);
+            setCopied(true);
+            window.setTimeout(() => setCopied(false), 1500);
+        } catch {
+            // 클립보드 접근 실패는 무시한다.
+        }
+    };
+
     return (
         <Dialog
             open={open}
@@ -61,15 +76,35 @@ export default function ExternalLinkWarningDialog({
                         style={{
                             marginTop: "16px",
                             backgroundColor: "#f5f5f5",
-                            padding: "16px 24px",
-                            fontFamily: "monospace",
-                            fontSize: "14px",
-                            fontWeight: 700,
-                            color: "#000",
-                            wordBreak: "break-all",
+                            padding: "12px 12px 12px 24px",
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "8px",
                         }}
                     >
-                        {highlightDomain(href)}
+                        <div
+                            style={{
+                                flex: 1,
+                                minWidth: 0,
+                                fontFamily: "monospace",
+                                fontSize: "14px",
+                                fontWeight: 700,
+                                color: "#000",
+                                wordBreak: "break-all",
+                            }}
+                        >
+                            {highlightDomain(href)}
+                        </div>
+                        <Tooltip title={copied ? "복사됨" : "주소 복사"}>
+                            <IconButton
+                                size="small"
+                                onClick={handleCopy}
+                                sx={{ flexShrink: 0, alignSelf: "center", color: copied ? "success.main" : "action.active" }}
+                                aria-label="웹 주소 복사"
+                            >
+                                {copied ? <CheckIcon fontSize="small" /> : <ContentCopyIcon fontSize="small" />}
+                            </IconButton>
+                        </Tooltip>
                     </div>
                 </div>
             </DialogContent>
